@@ -1,43 +1,103 @@
 # 🔬 Semiconductor Yield & WAT Analysis Dashboard
-### ADI Gandhinagar — Yield/Manufacturing Engineering Group
 
-A production-grade Streamlit dashboard that demonstrates:
-- **SPC Charts** (X-bar, R-chart, CUSUM with excursion detection)
-- **Lot-by-lot Yield Trend** using Murphy's Yield Model
-- **Root Cause Analysis** via PCA + Isolation Forest (ML)
-- **Cpk / Process Capability** for all WAT parameters
-- **WAT Parameter Correlation Heatmap**
+A **production-grade Streamlit dashboard** for analyzing semiconductor manufacturing data using **Statistical Process Control (SPC), yield modeling, process capability (Cpk), and machine learning-based root cause analysis**.
 
 ---
 
-## 🚀 How to Run (Step-by-Step)
+## 🚀 Overview
 
-### Step 1 — Prerequisites
-Make sure Python 3.9 or newer is installed.
+This project simulates real-world workflows in semiconductor manufacturing, focusing on:
+
+* Monitoring process stability using SPC charts
+* Tracking lot-wise yield trends
+* Identifying process excursions and anomalies
+* Evaluating process capability (Cpk)
+* Performing data-driven root cause analysis
+
+---
+
+## 🧠 Key Features
+
+### 📈 Statistical Process Control (SPC)
+
+* X-bar chart (subgroup mean monitoring)
+* R chart (process variation tracking)
+* CUSUM chart (early drift detection)
+* Automatic out-of-control detection
+
+---
+
+### 📉 Yield Analysis
+
+* Lot-by-lot yield trend visualization
+* Yield distribution across lots
+* Defect density (D₀) vs yield relationship (Murphy’s model)
+* Yield breakdown by process step
+
+---
+
+### 🔍 Root Cause Analysis (Machine Learning)
+
+* PCA (Principal Component Analysis) for dimensionality reduction
+* Isolation Forest for anomaly detection
+* Correlation heatmap of WAT parameters
+* Feature contribution insights
+
+---
+
+### 📊 Process Capability (Cpk)
+
+* Cpk calculation for key WAT parameters
+* Visualization against LSL/USL limits
+* Capability classification:
+
+  * ✅ Capable (Cpk ≥ 1.33)
+  * ⚠ Marginal (1.0–1.33)
+  * ❌ Not Capable (Cpk < 1.0)
+
+---
+
+## ⚙️ How to Run
+
+### 1️⃣ Prerequisites
+
+Ensure Python 3.9+ is installed:
+
 ```
 python --version
 ```
 
-### Step 2 — Create a Virtual Environment (Recommended)
+---
+
+### 2️⃣ Create Virtual Environment
+
 ```
 python -m venv venv
 ```
 
-Activate it:
-- **Windows:**  `venv\Scripts\activate`
-- **Mac/Linux:** `source venv/bin/activate`
+Activate:
 
-### Step 3 — Install Dependencies
+* **Windows:** `venv\Scripts\activate`
+* **Mac/Linux:** `source venv/bin/activate`
+
+---
+
+### 3️⃣ Install Dependencies
+
 ```
 pip install -r requirements.txt
 ```
 
-### Step 4 — Run the Dashboard
+---
+
+### 4️⃣ Run the Dashboard
+
 ```
 streamlit run app.py
 ```
 
-Your browser will automatically open at:
+Access locally at:
+
 ```
 http://localhost:8501
 ```
@@ -45,58 +105,70 @@ http://localhost:8501
 ---
 
 ## 📁 Project Structure
+
 ```
-adi_yield_dashboard/
-├── app.py              ← Main Streamlit application (all code here)
-├── requirements.txt    ← Python dependencies
-└── README.md           ← This file
+semiconductor-yield-spc-dashboard/
+├── app.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 🧪 What the Dashboard Shows
+## 🧪 Dashboard Modules
 
-| Tab | Content |
-|-----|---------|
-| 📈 SPC Charts | X-bar chart, R-chart, CUSUM with real excursion events highlighted |
-| 📉 Yield Analysis | Lot yield trend, yield distribution, D0 vs Yield scatter (Murphy's model), yield by process step |
-| 🔍 Root Cause & PCA | PCA scatter, explained variance, Isolation Forest anomaly flags, parameter correlation heatmap |
-| 📊 Cpk & Parameter Health | Cpk table + bar chart, histograms vs spec limits, process health radar |
-
----
-
-## 🎯 Key Features That Align with ADI JD
-
-- **SPC with CUSUM** → "Generate and maintain SPC charts for excursion detection"
-- **Defect density / Murphy's model** → "Real-time analysis of inline fab data on defects"
-- **Cpk / D0 / yield opportunity** → "Identify systematic issues and D0/Cpk/yield opportunity"
-- **PCA + Isolation Forest** → "Statistical and root cause analysis using advanced data analysis tools"
-- **WAT parameter tracking** → "ETest/WAT related parameters and wafer sort parameters"
-- **Process step breakdown** → "Root cause analysis for low yields"
+| Module              | Description                                                |
+| ------------------- | ---------------------------------------------------------- |
+| 📈 SPC Charts       | X-bar, R-chart, and CUSUM with excursion detection         |
+| 📉 Yield Analysis   | Yield trends, distributions, and defect-based modeling     |
+| 🔍 Root Cause & PCA | PCA visualization, anomaly detection, correlation analysis |
+| 📊 Cpk & Health     | Process capability metrics and parameter health monitoring |
 
 ---
 
-## 📊 Simulated Data Parameters
+## 📊 Simulated Dataset
 
-| Parameter | Nominal | LSL | USL |
-|-----------|---------|-----|-----|
-| Vt NMOS (V) | 0.45 | 0.40 | 0.50 |
-| Idsat NMOS (µA/µm) | 482 | 430 | 530 |
-| Sheet Resistance (Ω/□) | 98 | 85 | 115 |
-| Contact Resistance (Ω) | 48 | 42 | 58 |
-| Defect Density (cm⁻²) | ~0.1 | 0.0 | 0.50 |
+The dataset is synthetically generated to mimic semiconductor fab conditions, including:
 
-Excursion events are embedded at lots 28–30, 57–59, 73–75, 100–101.
+* WAT parameters (Vt, Idsat, resistances)
+* Defect density (D₀)
+* Lot-level yield
+* Embedded process excursions across selected lots
 
 ---
 
 ## 🛠 Tech Stack
-- **Streamlit** — Dashboard framework
-- **Plotly** — Interactive charts
-- **scikit-learn** — PCA, Isolation Forest, StandardScaler
-- **NumPy / Pandas** — Data manipulation
-- **statsmodels** — OLS trendline (via Plotly express)
+
+* **Streamlit** — Interactive dashboard
+* **Plotly** — Data visualization
+* **scikit-learn** — PCA, Isolation Forest
+* **NumPy & Pandas** — Data processing
+* **SciPy / Statsmodels** — Statistical analysis
 
 ---
 
-*Built for ADI Campus Drive 2026 — Yield/Manufacturing Engineering Role*
+## 🎯 Applications
+
+This project demonstrates concepts relevant to:
+
+* Semiconductor Yield Engineering
+* Process Control & SPC Monitoring
+* Manufacturing Data Analytics
+* Root Cause & Failure Analysis
+
+---
+
+## 🚀 Future Improvements
+
+* Integration with real fab datasets
+* Real-time data streaming
+* Advanced anomaly detection (deep learning)
+* Cloud deployment (Streamlit Cloud / AWS / GCP)
+
+---
+
+## 👩‍💻 Author
+
+**Jiya Parmar**
+Robotics & AI Engineer | Interested in Semiconductor Manufacturing & Intelligent Systems
+
