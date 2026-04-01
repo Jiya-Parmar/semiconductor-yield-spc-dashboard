@@ -1,11 +1,3 @@
-"""
-=============================================================================
-  Semiconductor Yield & WAT Analysis Dashboard
-  Analog Devices Inc. — Yield/Manufacturing Engineering Group
-  Gandhinagar, Gujarat
-=============================================================================
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
